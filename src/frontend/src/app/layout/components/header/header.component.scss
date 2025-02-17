@@ -1,0 +1,19 @@
+.navbar{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.nav-items{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  list-style-type: none;
+  gap: 1.5rem;
+  padding: 1rem;
+  margin: 1rem;
+}
