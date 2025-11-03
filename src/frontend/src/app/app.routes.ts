@@ -1,39 +1,50 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from './core/services/auth/auth.guard';
 
 export const routes: Routes = [
-  {
-    path: 'login',
-    loadComponent: () =>
-      import('./pages/login/login.component').then((m) => m.LoginComponent),
-  },
+	// Auth routes
+	{
+		path: 'auth',
+		// canActivate: AuthGuard,
+		children: [
+			// Login route
+			{
+				path: 'login',
+				loadComponent: () => import('./pages/login/login.component').then((m) => m.LoginComponent)
+			},
 
-  {
-    path: 'register',
-    loadComponent: () =>
-      import('./pages/register/register.component').then((m) => m.RegisterComponent),
-  },
+			// Register route
+			{
+				path: 'register',
+				loadComponent: () => import('./pages/register/register.component').then((m) => m.RegisterComponent)
+			},
 
-  {
-    path: '',
-    loadComponent: () =>
-      import('./pages/home/home.component').then((m) => m.HomeComponent),
-  },
+			// Reset password route
+			{
+				path: 'reset-password',
+				loadComponent: () =>
+					import('./pages/reset-password/reset-password.component').then((m) => m.ResetPasswordComponent)
+			},
 
-  {
-    path: 'about',
-    loadComponent: () =>
-      import('./pages/about/about.component').then((m) => m.AboutComponent),
-  },
+			// Recover password route
+			{
+				path: 'recover-password',
+				loadComponent: () =>
+					import('./pages/recover-password/recover-password.component').then((m) => m.RecoverPasswordComponent)
+			}
+		]
+	},
 
-  {
-    path: 'contact',
-    loadComponent: () =>
-      import('./pages/contact/contact.component').then((m) => m.ContactComponent),
-  },
+	// Home route
+	{
+		path: '',
+		loadComponent: () => import('./pages/home/home.component').then((m) => m.HomeComponent)
+	},
 
-  {
-    path: 'chat',
-    loadComponent: () =>
-      import('./pages/chat/chat.component').then((m) => m.ChatComponent),
-  }
+	// Chat route
+	{
+		path: 'chat',
+    // canActivate: AuthGuard
+		loadComponent: () => import('./pages/chat/chat.component').then((m) => m.ChatComponent)
+	}
 ];
